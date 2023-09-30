@@ -1,0 +1,2 @@
+1. Chỉnh sửa chức năng thống kê
+2. Làm chức năng chọn bàn và add món ăn thức uống cho mỗi bàn. Khi tắt form thì bật lại vẫn còn các món đã chọn. Khi nhấn đóng bàn và mở lại thì mới reset all món.
