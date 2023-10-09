@@ -36,9 +36,9 @@ namespace QuanLiTraSua
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePk = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.DGVsum = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnXem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DVG)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVsum)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -47,7 +47,7 @@ namespace QuanLiTraSua
             this.button1.BackColor = System.Drawing.Color.Lime;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1099, 417);
+            this.button1.Location = new System.Drawing.Point(128, 356);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 34);
             this.button1.TabIndex = 18;
@@ -64,12 +64,13 @@ namespace QuanLiTraSua
             this.DVG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DVG.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.DVG.Location = new System.Drawing.Point(17, 133);
-            this.DVG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DVG.Margin = new System.Windows.Forms.Padding(4);
             this.DVG.Name = "DVG";
             this.DVG.RowHeadersWidth = 51;
             this.DVG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DVG.Size = new System.Drawing.Size(931, 251);
+            this.DVG.Size = new System.Drawing.Size(931, 208);
             this.DVG.TabIndex = 16;
+            this.DVG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DVG_CellClick);
             // 
             // btnXoa
             // 
@@ -77,7 +78,7 @@ namespace QuanLiTraSua
             this.btnXoa.BackColor = System.Drawing.Color.Red;
             this.btnXoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.Location = new System.Drawing.Point(1213, 418);
+            this.btnXoa.Location = new System.Drawing.Point(242, 357);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(101, 34);
             this.btnXoa.TabIndex = 20;
@@ -90,7 +91,7 @@ namespace QuanLiTraSua
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(915, 74);
+            this.label1.Location = new System.Drawing.Point(21, 105);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 19);
             this.label1.TabIndex = 21;
@@ -100,7 +101,7 @@ namespace QuanLiTraSua
             // 
             this.dateTimePk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePk.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePk.Location = new System.Drawing.Point(995, 68);
+            this.dateTimePk.Location = new System.Drawing.Point(101, 99);
             this.dateTimePk.Name = "dateTimePk";
             this.dateTimePk.Size = new System.Drawing.Size(205, 27);
             this.dateTimePk.TabIndex = 22;
@@ -111,7 +112,7 @@ namespace QuanLiTraSua
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(1206, 68);
+            this.btnSearch.Location = new System.Drawing.Point(312, 99);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(97, 27);
             this.btnSearch.TabIndex = 23;
@@ -119,20 +120,30 @@ namespace QuanLiTraSua
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // DGVsum
+            // label2
             // 
-            this.DGVsum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVsum.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVsum.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.DGVsum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVsum.Location = new System.Drawing.Point(968, 133);
-            this.DGVsum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DGVsum.Name = "DGVsum";
-            this.DGVsum.RowHeadersWidth = 51;
-            this.DGVsum.Size = new System.Drawing.Size(346, 251);
-            this.DGVsum.TabIndex = 24;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Yellow;
+            this.label2.Location = new System.Drawing.Point(22, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 30);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Thống kê\r\n";
+            // 
+            // btnXem
+            // 
+            this.btnXem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXem.BackColor = System.Drawing.Color.Yellow;
+            this.btnXem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXem.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXem.Location = new System.Drawing.Point(17, 357);
+            this.btnXem.Name = "btnXem";
+            this.btnXem.Size = new System.Drawing.Size(101, 34);
+            this.btnXem.TabIndex = 18;
+            this.btnXem.Text = "Xem";
+            this.btnXem.UseVisualStyleBackColor = false;
+            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
             // ThongKe
             // 
@@ -140,12 +151,13 @@ namespace QuanLiTraSua
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1340, 463);
-            this.Controls.Add(this.DGVsum);
+            this.ClientSize = new System.Drawing.Size(955, 420);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dateTimePk);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnXem);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DVG);
             this.Font = new System.Drawing.Font("Times New Roman", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -155,7 +167,6 @@ namespace QuanLiTraSua
             this.Text = "Thống kê";
             this.Load += new System.EventHandler(this.ThongKe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DVG)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVsum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +180,7 @@ namespace QuanLiTraSua
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePk;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView DGVsum;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnXem;
     }
 }

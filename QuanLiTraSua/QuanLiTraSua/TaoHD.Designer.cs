@@ -29,7 +29,7 @@ namespace QuanLiTraSua
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonTamTinh = new System.Windows.Forms.Button();
+            this.btnXuatFile = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.DVG = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@ namespace QuanLiTraSua
             this.btnAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnCloseTable = new System.Windows.Forms.Button();
@@ -52,18 +52,19 @@ namespace QuanLiTraSua
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHD)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonTamTinh
+            // btnXuatFile
             // 
-            this.buttonTamTinh.BackColor = System.Drawing.Color.Gold;
-            this.buttonTamTinh.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTamTinh.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonTamTinh.Location = new System.Drawing.Point(939, 604);
-            this.buttonTamTinh.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonTamTinh.Name = "buttonTamTinh";
-            this.buttonTamTinh.Size = new System.Drawing.Size(261, 43);
-            this.buttonTamTinh.TabIndex = 23;
-            this.buttonTamTinh.Text = "Tạm tính";
-            this.buttonTamTinh.UseVisualStyleBackColor = false;
+            this.btnXuatFile.BackColor = System.Drawing.Color.Gold;
+            this.btnXuatFile.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatFile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnXuatFile.Location = new System.Drawing.Point(939, 604);
+            this.btnXuatFile.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.Size = new System.Drawing.Size(261, 43);
+            this.btnXuatFile.TabIndex = 23;
+            this.btnXuatFile.Text = "Xuất File";
+            this.btnXuatFile.UseVisualStyleBackColor = false;
+            this.btnXuatFile.Click += new System.EventHandler(this.BtnXuatFile_Click);
             // 
             // label5
             // 
@@ -202,13 +203,14 @@ namespace QuanLiTraSua
             this.label4.TabIndex = 54;
             this.label4.Text = "Tổng tiền";
             // 
-            // textBox1
+            // txtTongTien
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(1103, 500);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(473, 30);
-            this.textBox1.TabIndex = 55;
+            this.txtTongTien.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTongTien.Location = new System.Drawing.Point(1103, 500);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.ReadOnly = true;
+            this.txtTongTien.Size = new System.Drawing.Size(473, 30);
+            this.txtTongTien.TabIndex = 55;
             // 
             // label9
             // 
@@ -238,6 +240,7 @@ namespace QuanLiTraSua
             this.btnCloseTable.TabIndex = 58;
             this.btnCloseTable.Text = "Đóng bàn";
             this.btnCloseTable.UseVisualStyleBackColor = false;
+            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
             // 
             // txtProductId
             // 
@@ -269,7 +272,7 @@ namespace QuanLiTraSua
             this.Controls.Add(this.btnCloseTable);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTongTien);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAdd);
@@ -278,7 +281,7 @@ namespace QuanLiTraSua
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBoxSL);
             this.Controls.Add(this.dataGridViewHD);
-            this.Controls.Add(this.buttonTamTinh);
+            this.Controls.Add(this.btnXuatFile);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DVG);
@@ -294,7 +297,7 @@ namespace QuanLiTraSua
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonTamTinh;
+        private System.Windows.Forms.Button btnXuatFile;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView DVG;
         private System.Windows.Forms.Label label1;
@@ -307,7 +310,7 @@ namespace QuanLiTraSua
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTongTien;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnCloseTable;

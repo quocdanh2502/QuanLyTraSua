@@ -59,7 +59,6 @@ namespace QuanLiTraSua
             this.btnDangNhap.BackColor = System.Drawing.Color.AliceBlue;
             this.btnDangNhap.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDangNhap.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangNhap.Image = ((System.Drawing.Image)(resources.GetObject("btnDangNhap.Image")));
             this.btnDangNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDangNhap.ImageKey = "(none)";
             this.btnDangNhap.Location = new System.Drawing.Point(222, 277);
@@ -81,6 +80,7 @@ namespace QuanLiTraSua
             this.txtMatKhau.Location = new System.Drawing.Point(165, 205);
             this.txtMatKhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(375, 23);
             this.txtMatKhau.TabIndex = 32;
             this.txtMatKhau.Text = "Mật khẩu";

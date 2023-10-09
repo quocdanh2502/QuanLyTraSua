@@ -1,2 +1,17 @@
-1. Chỉnh sửa chức năng thống kê
-2. Làm chức năng chọn bàn và add món ăn thức uống cho mỗi bàn. Khi tắt form thì bật lại vẫn còn các món đã chọn. Khi nhấn đóng bàn và mở lại thì mới reset all món.
+1. Chỉnh sửa chức năng thống kê (Done)
+	thêm btn xem chi tiết( Id hóa đơn, maSp, teensp, giá, so lượng, thành tiền (Form popup)) 35 admin(done)
+
+
+2. Làm chức năng chọn bàn và add món ăn thức uống cho mỗi bàn. (done)
+	Khi tắt form thì bật lại vẫn còn các món đã chọn. Khi nhấn đóng bàn và mở lại thì mới reset all món. + bug duplice sản phẩm. 25 (done)
+
+3. Bên admin ông bỏ tạo hoá đơn. (done)
+
+
+xuất file  (đính kèm ngày xuất)
+
+
+// xóa clear data
+// change passworrk (done)
+
+	

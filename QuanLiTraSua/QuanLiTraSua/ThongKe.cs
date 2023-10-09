@@ -22,18 +22,16 @@ namespace QuanLiTraSua
         }
         HoaDon hd = new HoaDon();
         MY_DB mydb = new MY_DB();
+        string Mahd;
         public void reload()
         {
-            SqlCommand command = new SqlCommand("Select * FROM viewHoaDon");
+            SqlCommand command = new SqlCommand("Select IDhoadon, NgayTao,TongTien,maNV FROM [HoaDon]");
             DVG.AllowUserToAddRows = false;
             DVG.DataSource = hd.getHD(command);
             DVG.Columns[0].HeaderText = "Mã Hoá Đơn";
             DVG.Columns[1].HeaderText = "Ngày tạo";
-            DVG.Columns[2].HeaderText = "Mã Khách Hàng";
-            DVG.Columns[3].HeaderText = "Mã Sản Phẩm";
-            DVG.Columns[4].HeaderText = "Số lượng";
-            DVG.Columns[5].HeaderText = "Tổng Tiền";
-            DVG.Columns[6].HeaderText = "Mã Nhân Viên";
+            DVG.Columns[2].HeaderText = "Tổng Tiền";
+            DVG.Columns[3].HeaderText = "Mã Nhân Viên";
 
         }
         private void ThongKe_Load(object sender, EventArgs e)
@@ -167,6 +165,8 @@ namespace QuanLiTraSua
                         MessageBox.Show("Có lỗi xảy ra! Hóa đơn chưa được xóa.", "delete hd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                btnSearch_Click(sender, e);
+
             }
             catch (Exception e1)
             {
@@ -179,13 +179,31 @@ namespace QuanLiTraSua
         {
             DateTime day = dateTimePk.Value;
             //MessageBox.Show("Da them San Pham"+day, "add sp", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SqlCommand comand = new SqlCommand("Select * from F_ThuNhapByNgay(@ngay)", mydb.getConnection);
+            SqlCommand comand = new SqlCommand($"select IDhoadon, NgayTao,TongTien,maNV from HoaDon WHERE HoaDon.NgayTao = '{day.Month}/{day.Day}/{day.Year}'", mydb.getConnection);
             comand.Parameters.Add("@ngay", SqlDbType.DateTime).Value = day;
             SqlDataAdapter adapter = new SqlDataAdapter(comand);
             DataTable table = new DataTable();
             adapter.Fill(table);
-            DGVsum.DataSource = table;
-            DGVsum.AllowUserToAddRows = false;
+            DVG.DataSource = table;
+            DVG.AllowUserToAddRows = false;
+        }
+
+        private void DVG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(DVG.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                Mahd = DVG.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+        }
+
+        private void btnXem_Click(object sender, EventArgs e)
+        {
+            SqlCommand comand = new SqlCommand($"select * from HoaDon, SanPham where HoaDon.IDhoadon = '{Mahd}' and SanPham.IDsanpham = HoaDon.IDsanpham", mydb.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(comand);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            ThongTinChiTiet thongtinchitiet = new ThongTinChiTiet(table);
+            thongtinchitiet.ShowDialog();
         }
     }
 }
