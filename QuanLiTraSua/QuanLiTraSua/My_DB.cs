@@ -58,6 +58,92 @@ namespace QuanLiTraSua
 
                 return bangdulieu;
             }
+            public void InsertHoaDon(HoaDon_Mod hd)
+            {
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        openConection();
+                    }
+
+                    string insertQuery = "INSERT INTO HoaDon_Mod (IdHoaDon, NgayTao, SLsanpham ,TongTien, MaNV) VALUES (@IdHoaDon, @NgayTao,@SLsanpham, @TongTien, @MaNV)";
+
+                    using (SqlCommand command = new SqlCommand(insertQuery, getConnection))
+                    {
+                        command.Parameters.AddWithValue("@IdHoaDon", hd.IdHoaDon);
+                        command.Parameters.AddWithValue("@NgayTao", hd.NgayTao.Date);
+                        command.Parameters.AddWithValue("@SLsanpham", hd.SoLuongSP);
+                        command.Parameters.AddWithValue("@TongTien", hd.TongTien);
+                        command.Parameters.AddWithValue("@MaNV", hd.MaNV);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Thêm thành công.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không thể thêm.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        closeConnection();
+                    }
+                }
+            }
+            public void InsertSanPham(SanPham_Mod sp)
+            {
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        openConection();
+                    }
+
+                    string insertQuery = "INSERT INTO SanPham_mod (IDsanpham, Tensp, Giatien, IDhoadon, Soluong) VALUES (@IDsanpham, @Tensp, @Giatien, @IDhoadon, @Soluong)";
+
+                    using (SqlCommand command = new SqlCommand(insertQuery, getConnection))
+                    {
+                        command.Parameters.AddWithValue("@IDsanpham", sp.IdSanPham);
+                        command.Parameters.AddWithValue("@Tensp", sp.TenSanPham);
+                        command.Parameters.AddWithValue("@Giatien", sp.GiaSanPham);
+                        command.Parameters.AddWithValue("@IDhoadon", sp.IdHoaDon);
+                        command.Parameters.AddWithValue("@Soluong", sp.SoLuong);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Thêm thành công.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không thể thêm.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        closeConnection();
+                    }
+                }
+            }
         }
     
 

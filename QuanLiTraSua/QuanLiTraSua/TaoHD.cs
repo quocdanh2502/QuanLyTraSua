@@ -29,6 +29,7 @@ namespace QuanLiTraSua
 
 
         }
+        MY_DB db = new MY_DB();
         HoaDon hd = new HoaDon();
         ClassKhachHang kh = new ClassKhachHang();
         NVien nv = new NVien();
@@ -239,5 +240,64 @@ namespace QuanLiTraSua
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //System.Data.DataTable dt = dataGridViewHD.DataSource as System.Data.DataTable;
+            if (dataGridViewHD.DataSource != null)
+            {
+                HoaDon_Mod hd = new HoaDon_Mod();
+                hd.IdHoaDon = GenerateRandomID(6);
+                hd.NgayTao = DateTime.Now.Date;
+                hd.SoLuongSP = dataGridViewHD.Rows.Count;
+                hd.TongTien = int.Parse(txtTongTien.Text);
+                hd.MaNV = Global.GlobalUserId;
+                db.InsertHoaDon(hd);
+                SendDataSanPham(hd.IdHoaDon);
+            }
+            dataGridViewHD.DataSource = null;
+            txtTongTien.Text = "0";
+        }
+        void SendDataSanPham(string idHD)
+        {
+            if(dataGridViewHD.DataSource != null || dataGridViewHD.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridViewHD.Rows.Count - 1; i++)
+                {
+                    db.openConection();
+                    SanPham_Mod sp = new SanPham_Mod();
+                    sp.IdSanPham = dataGridViewHD.Rows[i].Cells[1].Value.ToString();
+                    sp.TenSanPham = dataGridViewHD.Rows[i].Cells[2].Value.ToString();
+                    sp.GiaSanPham = dataGridViewHD.Rows[i].Cells[3].Value.ToString();
+                    sp.SoLuong = int.Parse(dataGridViewHD.Rows[i].Cells[4].Value.ToString());
+                    sp.IdHoaDon = idHD;
+                    string insertQuery = "INSERT INTO SanPham_mod (IDsanpham, Tensp, Giatien, IDhoadon, Soluong) VALUES (@IDsanpham, @Tensp, @Giatien, @IDhoadon, @Soluong)";
+                    using (SqlCommand command = new SqlCommand(insertQuery, db.getConnection))
+                    {
+                        command.Parameters.AddWithValue("@IDsanpham", sp.IdSanPham);
+                        command.Parameters.AddWithValue("@Tensp", sp.TenSanPham);
+                        command.Parameters.AddWithValue("@Giatien", sp.GiaSanPham);
+                        command.Parameters.AddWithValue("@IDhoadon", sp.IdHoaDon);
+                        command.Parameters.AddWithValue("@Soluong", sp.SoLuong);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+        string GenerateRandomID(int length)
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            char[] randomChars = new char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                randomChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            return new string(randomChars);
+        }
+
     }
 }

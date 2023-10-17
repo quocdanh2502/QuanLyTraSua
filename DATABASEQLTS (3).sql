@@ -1,4 +1,36 @@
-﻿--Tạo database
+﻿--select * from HoaDon, SanPham where HoaDon.IDhoadon = 'HD1' and SanPham.IDsanpham = HoaDon.IDsanpham
+
+--select * from [HoaDon_Mod]
+--select * from [SanPham_mod]
+
+CREATE TABLE [dbo].[HoaDon_Mod](
+	[IDhoadon] [char](20) NOT NULL,
+	[NgayTao] [date] NOT NULL,
+	[SLsanpham] [int] NOT NULL,
+	[TongTien] [char] (30) NOT NULL,
+	[maNV] [char](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IDhoadon] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[SanPham_mod](
+	[IDsanpham] [char](30) NOT NULL,
+	[Tensp] [nvarchar](50) NULL,
+	[Giatien] [char](30) NULL,
+	[IDhoadon] [char](20),
+	[Soluong] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IDsanpham],[IDhoadon] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[SanPham_mod]  WITH CHECK ADD FOREIGN KEY([IDhoadon])
+REFERENCES [dbo].[HoaDon_Mod] ([IDhoadon])
+ON DELETE CASCADE
+--Tạo database
 CREATE DATABASE QLTS
 GO
 USE [QLTS]

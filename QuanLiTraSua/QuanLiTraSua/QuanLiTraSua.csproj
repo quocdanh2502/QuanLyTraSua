@@ -207,6 +207,7 @@
       <DependentUpon>NhanVienTRuyCap.cs</DependentUpon>
     </Compile>
     <Compile Include="NVien.cs" />
+    <Compile Include="Object.cs" />
     <Compile Include="QLTSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLiTraSua
 {
-    class Global
+    public class Global
     {
         public static string GlobalUserId { get; private set; }
         public static void SetGlobalUserId(string userId)
