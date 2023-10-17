@@ -25,9 +25,20 @@ namespace QuanLiTraSua
         string Mahd;
         public void reload()
         {
-            SqlCommand command = new SqlCommand("Select IDhoadon, NgayTao,TongTien,maNV FROM [HoaDon]");
+            SqlCommand command = new SqlCommand(
+                "SELECT IDhoadon, NgayTao, TongTien, maNV FROM HoaDon " +
+                "UNION ALL " +
+                "SELECT IDhoadon, NgayTao, TongTien, maNV FROM HoaDon_Mod",
+                mydb.getConnection
+            );
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
             DVG.AllowUserToAddRows = false;
-            DVG.DataSource = hd.getHD(command);
+            DVG.DataSource = table;
+
             DVG.Columns[0].HeaderText = "Mã Hoá Đơn";
             DVG.Columns[1].HeaderText = "Ngày tạo";
             DVG.Columns[2].HeaderText = "Tổng Tiền";
@@ -178,10 +189,12 @@ namespace QuanLiTraSua
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DateTime day = dateTimePk.Value;
-            //MessageBox.Show("Da them San Pham"+day, "add sp", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SqlCommand comand = new SqlCommand($"select IDhoadon, NgayTao,TongTien,maNV from HoaDon WHERE HoaDon.NgayTao = '{day.Month}/{day.Day}/{day.Year}'", mydb.getConnection);
-            comand.Parameters.Add("@ngay", SqlDbType.DateTime).Value = day;
-            SqlDataAdapter adapter = new SqlDataAdapter(comand);
+            SqlCommand command = new SqlCommand("SELECT IDhoadon, NgayTao, TongTien, maNV FROM HoaDon WHERE HoaDon.NgayTao = @ngay " +
+                "UNION ALL " +
+                "SELECT IDhoadon, NgayTao, TongTien, maNV FROM HoaDon_Mod WHERE HoaDon_Mod.NgayTao = @ngay", mydb.getConnection);
+
+            command.Parameters.Add("@ngay", SqlDbType.DateTime).Value = day;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
             DVG.DataSource = table;
@@ -198,12 +211,26 @@ namespace QuanLiTraSua
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            SqlCommand comand = new SqlCommand($"select * from HoaDon, SanPham where HoaDon.IDhoadon = '{Mahd}' and SanPham.IDsanpham = HoaDon.IDsanpham", mydb.getConnection);
-            SqlDataAdapter adapter = new SqlDataAdapter(comand);
+            string query = $@"SELECT HoaDon.IDhoadon, SanPham.IDsanpham, Tensp, SLsanpham, TongTien 
+                 FROM HoaDon, SanPham 
+                 WHERE HoaDon.IDhoadon = '{Mahd}' AND SanPham.IDsanpham = HoaDon.IDsanpham
+                 UNION ALL
+                 SELECT [HoaDon_Mod].IDhoadon, IDsanpham, Tensp, Soluong, TongTien 
+                 FROM [SanPham_mod], [HoaDon_Mod] 
+                 WHERE [SanPham_mod].IDhoadon = '{Mahd}' AND [HoaDon_Mod].IDhoadon = [SanPham_mod].IDhoadon";
+
+            SqlCommand command = new SqlCommand(query, mydb.getConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
             ThongTinChiTiet thongtinchitiet = new ThongTinChiTiet(table);
             thongtinchitiet.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DVG.DataSource = null;
+            reload();
         }
     }
 }

@@ -38,6 +38,7 @@ namespace QuanLiTraSua
             this.btnSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnXem = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DVG)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,6 +146,19 @@ namespace QuanLiTraSua
             this.btnXem.UseVisualStyleBackColor = false;
             this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(415, 99);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 27);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Tìm tất cả";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // ThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -153,6 +167,7 @@ namespace QuanLiTraSua
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(955, 420);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dateTimePk);
             this.Controls.Add(this.label1);
@@ -182,5 +197,6 @@ namespace QuanLiTraSua
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnXem;
+        private System.Windows.Forms.Button button2;
     }
 }

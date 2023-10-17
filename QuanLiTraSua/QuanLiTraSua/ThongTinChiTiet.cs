@@ -15,11 +15,7 @@ namespace QuanLiTraSua
         public ThongTinChiTiet(DataTable data)
         {
             InitializeComponent();
-            lbl_IdHoaDon.Text = data.Rows[0]["IDhoadon"].ToString();
-            lbl_masp.Text = data.Rows[0]["IDsanpham"].ToString();
-            lbl_tensp.Text = data.Rows[0]["Tensp"].ToString();
-            lblsoluong.Text = data.Rows[0]["SLsanpham"].ToString();
-            lbl_thanhtien.Text = data.Rows[0]["TongTien"].ToString();
+            DGV_Chitiet.DataSource = data;
         }
     }
 }

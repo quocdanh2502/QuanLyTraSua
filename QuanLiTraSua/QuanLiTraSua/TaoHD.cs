@@ -15,6 +15,7 @@ using System.Drawing;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using Document = iTextSharp.text.Document;
+using Microsoft.Identity.Client;
 
 namespace QuanLiTraSua
 {
@@ -209,10 +210,12 @@ namespace QuanLiTraSua
                     pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
 
                     // Thêm tiêu đề cột
+                    int i = 1;
                     foreach (DataGridViewColumn column in dataGridView.Columns)
                     {
-                        PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, new iTextSharp.text.Font()));
+                        PdfPCell cell = new PdfPCell(new Phrase(SetHeader(i), new iTextSharp.text.Font()));
                         pdfTable.AddCell(cell);
+                        i++;
                     }
 
                     // Thêm dữ liệu từ DataGridView
@@ -240,7 +243,26 @@ namespace QuanLiTraSua
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        string SetHeader (int i)
+        {
+            string header = "";
+            switch (i)
+            {
+                case 1: header = "STT";
+                    break;
+                case 2: header = "Product_ID";
+                    break;
+                case 3: header = "Product Name";
+                    break;
+                case 4: header = "Poduct Price";
+                    break;
+                case 5: header = "Quanlity";
+                    break;
+                case 6: header = "Money";
+                    break;
+            }
+            return header;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             //System.Data.DataTable dt = dataGridViewHD.DataSource as System.Data.DataTable;
@@ -257,6 +279,7 @@ namespace QuanLiTraSua
             }
             dataGridViewHD.DataSource = null;
             txtTongTien.Text = "0";
+            MessageBox.Show("Thanh Toán Thành Công", "Thông báo", MessageBoxButtons.OK);
         }
         void SendDataSanPham(string idHD)
         {
